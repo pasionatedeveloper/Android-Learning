@@ -1,6 +1,6 @@
 package com.ajssoftwares.myapplication;
 
- class Person {
+ class Person implements Student {
 
     String name;
     int age;
@@ -18,4 +18,9 @@ package com.ajssoftwares.myapplication;
     void getContactNumber(){
         System.out.println("Name: "+name);
     }
-}
+
+     @Override
+     public void study() {
+
+     }
+ }
