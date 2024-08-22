@@ -11,14 +11,20 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements
+        BottomNavigationView.OnNavigationItemSelectedListener,
+        NavigationView.OnNavigationItemSelectedListener {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+
+    BottomNavigationView bottomNavigationView;
 
     @Override
     @SuppressLint("MissingInflatedId")
@@ -27,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
 
+        //toggle buttton for drawer
         toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
@@ -35,31 +42,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(this);
+
+        bottomNavigationView = findViewById(R.id.bottomNav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        // open home fragment by default
+        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer,new HomeFragment()).commit();
+
+
+
+
+        //navigationView.setNavigationItemSelectedListener(this);
 
     }
 
+
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 
-        if(id == R.id.homeNavItem){
-            Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
-            drawerLayout.closeDrawers();
+        if(id == R.id.homeItem){
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer,new HomeFragment()).commit();
         }
-        else if(id == R.id.profileNavItem){
-            Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
-            drawerLayout.closeDrawers();
+        else if(id == R.id.searchItem){
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer,new SearchFragment()).commit();
+
         }
-        else if(id == R.id.settingsNavItem){
-            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
-            drawerLayout.closeDrawers();
+        else if(id == R.id.favouritesItem){
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer,new FavouriteFragment()).commit();
         }
-        else if(id == R.id.logoutNavItem){
-            Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
-            startActivity(intent);
-            finish();
+        else{
+
         }
         return true;
     }

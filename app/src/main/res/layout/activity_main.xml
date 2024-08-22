@@ -19,7 +19,15 @@
             app:title="@string/dashboard"
             app:titleTextColor="@color/white"/>
 
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:layout_above="@+id/bottomNav"/>
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

@@ -7,3 +7,13 @@ public interface Student {
     void study();
 
 }
+
+abstract class Teacher{
+
+    void teach(){
+        //hbhbkhhkhhgh
+    }
+
+    abstract void dance();
+
+}
