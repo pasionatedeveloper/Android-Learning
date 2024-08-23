@@ -1,7 +1,9 @@
 package com.ajssoftwares.myapplication;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -26,11 +29,18 @@ public class MainActivity extends AppCompatActivity implements
 
     BottomNavigationView bottomNavigationView;
 
+
     @Override
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+
+        Snackbar.make(this.getCurrentFocus(),"Welcome",Snackbar.LENGTH_LONG).show();
 
 
         //toggle buttton for drawer
