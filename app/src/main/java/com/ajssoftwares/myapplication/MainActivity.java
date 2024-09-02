@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements
 
     BottomNavigationView bottomNavigationView;
 
+    String email;
 
     @Override
     @SuppressLint("MissingInflatedId")
@@ -40,8 +41,11 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
 
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
 
-//        Snackbar.make(this.getCurrentFocus(),"Welcome",Snackbar.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Welcome "+name, Toast.LENGTH_SHORT).show();
 
 
         //toggle buttton for drawer

@@ -9,7 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -20,6 +24,7 @@ public class RegistrationActivity extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
+    CircleImageView profileImage;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,10 +40,21 @@ public class RegistrationActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+        profileImage = findViewById(R.id.profile_image);
         edtName = findViewById(R.id.edtName);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         btnRegister = findViewById(R.id.btnRegister);
+
+
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(Intent.ACTION_PICK);
+               intent.setType("image/*");
+               startActivityForResult(intent,1001);
+            }
+        });
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +70,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("name",edtName.getText().toString());
+                    intent.putExtra("email",edtEmail.getText().toString());
                     startActivity(intent);
                 }
                 else{
@@ -61,6 +79,15 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1001 && resultCode == RESULT_OK && data!= null){
+            profileImage.setImageURI(data.getData());
+        }
     }
 
     private boolean validateUser() {
