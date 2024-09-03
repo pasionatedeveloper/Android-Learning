@@ -42,4 +42,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    val lottieVersion = "3.4.0"
+    implementation("com.airbnb.android:lottie:$lottieVersion")
+
 }
