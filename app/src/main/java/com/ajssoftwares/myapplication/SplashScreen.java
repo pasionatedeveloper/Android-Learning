@@ -9,6 +9,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
+        // Views (button, text fields, text views etc)
+       // Alert dialog, toast, snackbar , notifications
+      // drawer, bottom navigation, fragments, activities
+     // threads, splash screen
+    // select image from gallery
+    // 3rd party libraries
+    // animations
+
+    //recycler view
+
+    //CRUD (Create, Read, Update, Delete)
+
 public class SplashScreen extends AppCompatActivity {
 
     @Override
@@ -16,11 +29,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        //main thread or UI thread
-
-        //thread class is used to make custom thread
-
-        //(ANR application not responding)
 
         Thread thread = new Thread(){
             @Override
